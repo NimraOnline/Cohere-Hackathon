@@ -1,45 +1,82 @@
 // Reflect.jsx
 import React, { useState } from 'react';
+import happy from './style/emojis/happy.png';
+import neutral from './style/emojis/neutral.png';
+import confused from './style/emojis/confused.png';
+import sad from './style/emojis/sad.png';
+import stressed from './style/emojis/stressed.png';
+import angry from './style/emojis/angry.png';
 
 function Reflect() {
-  const [selectedEmotion, setSelectedEmotion] = useState('');
-  const [selectedObject, setSelectedObject] = useState('');
+    const [selectedEmotion, setSelectedEmotion] = useState('');
+    const [selectedObjective, setSelectedObjective] = useState('');
 
-  const handleEmotionChange = (event) => {
-    setSelectedEmotion(event.target.value);
-  };
+    const handleEmotionClick = (emotion) => {
+        setSelectedEmotion(emotion);
+    };
 
-  const handleObjectChange = (event) => {
-    setSelectedObject(event.target.value);
-  };
+    const handleObjectiveInput = (event) => {
+        setSelectedObjective(event.target.value);
+    };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Handle submission, send data to the backend, and get results
     // Update the state or perform any other necessary actions
   };
 
   return (
     <div className="main">
-      <h1>Reflect Page</h1>
+      <h1>Reflect</h1>
       <div id='container'>
         <div id='userinput'>
             <div>
                 {/* Emotion Selection */}
-                <label htmlFor="emotion">Select Emotion:</label>
-                <select id="emotion" value={selectedEmotion} onChange={handleEmotionChange}>
-                    {/* Add emotion options here */}
-                </select>
+                <center>
+                <h3 htmlFor="emotion">How are you feeling today</h3>
+                </center>
+                    <div className="emoji-buttons">
+                    <img src={happy} alt="Happy" 
+                    className={selectedEmotion === 'Happy' ? 'selected' : ''}
+                    onClick={() => handleEmotionClick('Happy')}
+                    />
+                    <img src={neutral} alt="Neutral"
+                    className={selectedEmotion === 'Neutral' ? 'selected' : ''}
+                    onClick={() => handleEmotionClick('Neutral')}
+                    />
+                    <img src={stressed} alt="Stressed"
+                    className={selectedEmotion === 'Stressed' ? 'selected' : ''}
+                    onClick={() => handleEmotionClick('Stressed')}
+                    />
+                    <img src={confused} alt="Confused"
+                    className={selectedEmotion === 'Confused' ? 'selected' : ''}
+                    onClick={() => handleEmotionClick('Confused')}
+                    />
+                    <img src={sad} alt="Sad"
+                    className={selectedEmotion === 'Sad' ? 'selected' : ''}
+                    onClick={() => handleEmotionClick('Sad')}
+                    />
+                    <img src={angry} alt="Angry"
+                    className={selectedEmotion === 'Angry' ? 'selected' : ''}
+                    onClick={() => handleEmotionClick('Angry')}
+                    />
+                    </div>
+
             </div>
-            <div>
-                {/* Object Selection */}
-                <label htmlFor="object">Select Object:</label>
-                <select id="object" value={selectedObject} onChange={handleObjectChange}>
-                    {/* Add object options here */}
-                </select>
+            <div className='user-objective'>
+                {/* Objective Selection */}
+                <center>
+                <h3 htmlFor="object">What will you accomplish this session</h3>
+                </center>
+                    <div>
+                        <input type="text" value={selectedObjective} onChange={handleObjectiveInput} 
+                        placeholder="Type your objective here"
+                        />
+                    </div>
+
             </div>
             <div>
                 {/* Submit Button */}
-                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={handleSubmit}>Discover Verses for Me</button>
             </div>
         </div>
         {/* Display Results */}

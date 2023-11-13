@@ -48,10 +48,25 @@ body, html {
   background-color: rgba(176, 168, 181, 0.832);
   padding: 25px;
   width: 100%;
+  border-radius: 10px;
 }
 
-#userinput h2 {
+#userinput h2, h3 {
   font-family: 'Wondar Quason Free', sans-serif;
+}
+
+.emoji-buttons img{
+  margin: 0 20px 0 0;
+  cursor: pointer;
+}
+
+.emoji-buttons img.selected {
+  border: 10px solid #DCB7E4;
+  border-radius: 50%;
+}
+
+.user-objective {
+  padding-top: 25px;
 }
 
 #Left {

@@ -5,7 +5,7 @@ import './App.css';
 function ChapterChat() {
   return (
     <div className='main'>
-      <h1>Chapter Chat Page</h1>
+      <h1>Chapter Chat</h1>
       {/* Add content specific to the Reflect page */}
 
       <div id='container'>
