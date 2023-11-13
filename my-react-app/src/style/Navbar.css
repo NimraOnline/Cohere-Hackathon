@@ -1,0 +1,25 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px; /* Adjust the padding as needed */
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for styling */
+    z-index: 100; /* Ensure the navbar is above other elements */
+  }
+
+.navbar-button {
+    background-color: #8f709a71; /* Set the background color for the button */
+    color: #fff; /* Set the text color for the button */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+.navbar-button:hover {
+  background-color: #5ADBFF; /* Set the background color on hover */
+}
+
+

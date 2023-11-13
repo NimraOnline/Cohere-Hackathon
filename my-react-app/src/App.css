@@ -1,0 +1,74 @@
+/* App.css */
+@import url('https://fonts.cdnfonts.com/css/wondar-quason-free');
+
+body, html {
+  font-family: 'Wondar Quason Free', sans-serif;
+  margin: 0;
+  padding: 1px;
+  height: 100%;
+}
+
+#app {
+  min-height: 100vh;
+  background-color: rgb(255, 248, 255);
+  width: 100%;
+}
+
+/* Add the following style to align content at the top */
+#app > div {
+  padding: 25px;
+  width: 100%;
+  position: fixed;
+  background-color: rgb(255, 248, 255);
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(style/websitebackground.jpeg) center/cover no-repeat;
+
+}
+
+.main {
+  
+  width: 100%; /* Take up the full width of the screen */
+  position: fixed;
+  background-color: rgb(255, 248, 255);
+  min-height: 100vh;
+}
+
+#container {
+  font-family: 'Sen', sans-serif;
+  display: flex; /* Use flexbox to make children inline */
+  height: calc(100vh - 200px);
+  padding: 10px;
+}
+
+#userinput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(176, 168, 181, 0.832);
+  padding: 25px;
+  width: 100%;
+}
+
+#userinput h2 {
+  font-family: 'Wondar Quason Free', sans-serif;
+}
+
+#Left {
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  margin-right: 1px; 
+  box-sizing: border-box;
+}
+
+#Right {
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
