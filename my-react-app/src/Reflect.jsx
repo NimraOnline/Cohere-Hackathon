@@ -27,9 +27,36 @@ function Reflect() {
     };
 
   const handleSubmit = async () => {
-    // Handle submission, send data to the backend, and get results
-    // Update the state or perform any other necessary actions
-  };
+    try {
+        // Prepare the data to be sent to the backend
+        const data = {
+          emotion: selectedEmotion,
+          objective: selectedObjective,
+        };
+  
+        // Using fetch to send data to the Flask backend
+        const response = await fetch('/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const result = await response.json();
+  
+        // Handle the result if needed
+        console.log(result);
+  
+        // Update the state or perform any other necessary actions
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
   return (
     <div className="main">

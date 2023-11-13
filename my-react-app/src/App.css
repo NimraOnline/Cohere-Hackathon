@@ -104,6 +104,14 @@ h2, h3 {
   color: rgb(241, 229, 245);
 }
 
+#submit-button:hover {
+  background-color: rgb(187, 169, 193);
+}
+
+#submit-button:focus {
+  outline: none;
+}
+
 .spiritual-booster-content {
   font-size: 15px;
 }
