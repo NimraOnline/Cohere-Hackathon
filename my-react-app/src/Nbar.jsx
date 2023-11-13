@@ -8,7 +8,7 @@ function Nbar({ setCurrentRoute }) {
 
           <button className="navbar-button" onClick={() => setCurrentRoute('home')}>Home</button>
 
-          <button className="navbar-button" onClick={() => setCurrentRoute('reflect')}>Reflect</button>
+          <button className="navbar-button" onClick={() => setCurrentRoute('reflect')}>Tadabor</button>
 
           <button className="navbar-button" onClick={() => setCurrentRoute('chapter-chat')}>Chapter Chat</button>
 

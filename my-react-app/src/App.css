@@ -1,11 +1,15 @@
 /* App.css */
-@import url('https://fonts.cdnfonts.com/css/wondar-quason-free');
+@import url('https://fonts.cdnfonts.com/css/borel');
 
 body, html {
-  font-family: 'Wondar Quason Free', sans-serif;
+  font-family: 'Borel', sans-serif;
   margin: 0;
   padding: 1px;
   height: 100%;
+}
+
+h2, h3 {
+  font-family: 'Borel', sans-serif;
 }
 
 #app {
@@ -26,7 +30,6 @@ body, html {
 }
 
 .main {
-  
   width: 100%; /* Take up the full width of the screen */
   position: fixed;
   background-color: rgb(255, 248, 255);
@@ -34,9 +37,9 @@ body, html {
 }
 
 #container {
-  font-family: 'Sen', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   display: flex; /* Use flexbox to make children inline */
-  height: calc(100vh - 200px);
+  height: calc(100vh - 70px);
   padding: 10px;
 }
 
@@ -45,14 +48,14 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(176, 168, 181, 0.832);
+  background-color: rgba(176, 168, 181, 0.25);
   padding: 25px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 25px;
 }
 
-#userinput h2, h3 {
-  font-family: 'Wondar Quason Free', sans-serif;
+.emoji-buttons {
+  padding: 10px;
 }
 
 .emoji-buttons img{
@@ -61,13 +64,66 @@ body, html {
 }
 
 .emoji-buttons img.selected {
-  border: 10px solid #DCB7E4;
+  border: 10px solid #dcb7e4;
   border-radius: 50%;
 }
 
 .user-objective {
   padding-top: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.input-container {
+  width: 70%;
+}
+
+.input-container input{
+  width: 100%;
+  padding: 10px; /* Add padding for better visual appearance */
+  font-size: 16px; /* Adjust the font size */
+  border-radius: 10px; /* Add rounded corners */
+  background-color: white;
+  color: black;
+}
+
+/* Style the input when it is focused */
+.input-container input:focus {
+  outline: none; /* Remove the default focus outline */
+  box-shadow: 0 0 25px #DCB7E4; /* Add a subtle box shadow when focused */
+}
+
+.submit-button {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+#submit-button {
+  color: rgb(241, 229, 245);
+}
+
+.spiritual-booster-content {
+  font-size: 15px;
+}
+
+.booster-button {
+  background-color: #dcb7e400;
+  font-size: x-small;
+  border: none;
+}
+
+.booster-button:hover {
+  color: #c193ea;
+  text-shadow: 0 0 25px #e298ff;
+}
+
+.booster-button:focus {
+  outline: none;
+  border: none;
+}
+/* button:focus, button:active */
 
 #Left {
   flex: 1;

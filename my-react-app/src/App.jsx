@@ -16,7 +16,10 @@ function App() {
       {currentRoute === 'chapter-chat' && <ChapterChat />}
       {currentRoute === 'home' && (
         <div>
-          <h1>Home Page</h1>
+          <h1>  </h1>
+          <div id='container'>
+            <h2> Welcome! </h2>
+          </div>
           
         </div>
       )}
