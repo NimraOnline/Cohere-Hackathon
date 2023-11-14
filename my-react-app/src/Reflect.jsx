@@ -11,6 +11,7 @@ function Reflect() {
     const [selectedEmotion, setSelectedEmotion] = useState('');
     const [selectedObjective, setSelectedObjective] = useState('');
     const [spiritualBoosterVisible, setSpiritualBoosterVisible] = useState(false);
+    const [generated, setGenerated] = useState('');
 
     const handleEmotionClick = (emotion) => {
         setSelectedEmotion(emotion);
@@ -35,7 +36,7 @@ function Reflect() {
         };
   
         // Using fetch to send data to the Flask backend
-        const response = await fetch('/submit', {
+        const response = await fetch('http://127.0.0.1:5000/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,9 +49,7 @@ function Reflect() {
         }
   
         const result = await response.json();
-  
-        // Handle the result if needed
-        console.log(result);
+        setGenerated(result.generated)
   
         // Update the state or perform any other necessary actions
       } catch (error) {
@@ -63,7 +62,13 @@ function Reflect() {
       <h1></h1>
       <div id='container'>
         <div id='userinput'>
-
+        {generated ? (
+            // If a generated value exists, show it
+            <div>
+              <p>Generated Value: {generated}</p>
+            </div>
+        ) : (
+        <div id='userinput2'>
             <div className='user-objective'>
                 {/* Objective Selection */}
                 <center>
@@ -124,7 +129,8 @@ function Reflect() {
               >
                <h3> {spiritualBoosterVisible ? '⛔ Remove' : '✨ Add'} Spiritual Booster</h3>
               </button>
-
+        </div>
+        )}
         </div>
         {/* Display Results */}
         {/* You can render the results here based on the backend response */}
