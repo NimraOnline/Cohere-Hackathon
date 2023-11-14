@@ -65,7 +65,7 @@ function Reflect() {
         {generated ? (
             // If a generated value exists, show it
             <div>
-              <p>Generated Value: {generated}</p>
+              <p>{generated}</p>
             </div>
         ) : (
         <div id='userinput2'>
