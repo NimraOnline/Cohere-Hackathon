@@ -11,7 +11,6 @@ function App() {
   return (
     <div id="app">
       <Nbar setCurrentRoute={setCurrentRoute} />
-
       {currentRoute === 'reflect' && <Reflect />}
       {currentRoute === 'chapter-chat' && <ChapterChat />}
       {currentRoute === 'home' && (

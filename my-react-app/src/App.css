@@ -8,7 +8,7 @@ body, html {
   height: 100%;
 }
 
-h2, h3 {
+h2, h3, h4 {
   font-family: 'Borel', sans-serif;
 }
 
@@ -60,7 +60,6 @@ h2, h3 {
   align-items: center;
   justify-content: center;
   background-color: rgba(176, 168, 181, 0);
-  padding: 25px;
   width: 100%;
   border-radius: 25px;
 }
@@ -89,6 +88,7 @@ h2, h3 {
 
 .input-container {
   width: 70%;
+  padding: 25px;
 }
 
 .input-container input{
