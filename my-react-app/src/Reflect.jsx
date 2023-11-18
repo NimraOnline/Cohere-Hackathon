@@ -80,33 +80,31 @@ function Reflect() {
         console.error('Error:', error);
       }
     };
-  const handleReflect = async (metadata) => {
-    setIsLoading(true);
-
-    const response = await fetch('https://tadabor-fb4f5dd9029a.herokuapp.com/reflect', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(metadata),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    if (response.status=="200"){
-      setPopupContent('');
-      setPopupContent(questions);
-    }
-
-    const result = await response.json();
-    setIsLoading(false);
-
-    setQuestions(result.questions);
-
-    setPopupContent(questions);
-
-  };
+    const handleReflect = async (metadata) => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('https://tadabor-fb4f5dd9029a.herokuapp.com/reflect', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(metadata),
+        });
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    
+        const result = await response.json();
+        setQuestions(result.questions);
+        setPopupContent(result.questions); // Set popupContent directly with result.questions
+      } catch (error) {
+        console.error('Error during reflection:', error);
+        // Handle error as needed, e.g., show an error message
+      } finally {
+        setIsLoading(false);
+      };
+    };
 
   const handleButtonClick = (content) => {
       // Set the content for the popup based on the button clicked
