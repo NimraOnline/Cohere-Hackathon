@@ -1,3 +1,4 @@
 .env
 myenv/
 .vercel
+backend/__pycache__

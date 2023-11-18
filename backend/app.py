@@ -26,7 +26,7 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 def create_weaviate_client():
     if not hasattr(g, 'weaviate_client'):
-        auth_config = weaviate.auth.AuthApiKey(api_key=WEAVIATE_KEY)
+        auth_config = weaviate.AuthApiKey(api_key=WEAVIATE_KEY)
         client = weaviate.Client(
             url=WEAVIATE_URL,
             auth_client_secret=auth_config,

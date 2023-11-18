@@ -94,6 +94,10 @@ function Reflect() {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    if (response.status=="200"){
+      setPopupContent(questions);
+    }
+
     const result = await response.json();
     setIsLoading(false);
 
