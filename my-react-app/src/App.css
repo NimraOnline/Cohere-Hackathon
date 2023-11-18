@@ -19,6 +19,13 @@ h4 {
   direction: rtl;
 }
 
+.image-container {
+  max-width: 75%;
+  height: auto;
+  border-radius: 70px;
+  opacity: 90%;
+}
+
 #small {
   font-size: small;
 }
