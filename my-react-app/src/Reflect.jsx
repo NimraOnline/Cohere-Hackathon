@@ -95,6 +95,7 @@ function Reflect() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     if (response.status=="200"){
+      setPopupContent('');
       setPopupContent(questions);
     }
 
