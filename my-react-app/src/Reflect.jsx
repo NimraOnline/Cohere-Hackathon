@@ -51,7 +51,7 @@ function Reflect() {
         };
   
         // Using fetch to send data to the Flask backend
-        const response = await fetch('http://127.0.0.1:5000/submit', {
+        const response = await fetch('https://tadabor-fb4f5dd9029a.herokuapp.com/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ function Reflect() {
   const handleReflect = async (metadata) => {
     setIsLoading(true);
 
-    const response = await fetch('http://127.0.0.1:5000/reflect', {
+    const response = await fetch('https://tadabor-fb4f5dd9029a.herokuapp.com/reflect', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
