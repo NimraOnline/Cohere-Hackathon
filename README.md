@@ -1,7 +1,7 @@
 # Cohere-Hackathon
 ![Alt text](Tadabor.png)
 
-##Schema
+## Schema
 ![Schema](my-react-app/src/style/Schema.png)
 
 ## Contributors
