@@ -19,8 +19,7 @@ function App() {
           <div id='container'>
             <div id='userinput'>
             <h2> Welcome! </h2>
-              Hello
-            </div>
+            Explore the Tadabur tab to delve deeper into the profound meanings of the verses. Enhanced with insights from Ibn Kathir Tafsir and RAG, enrich your understanding of the sacred text.            </div>
           </div>
           
         </div>
