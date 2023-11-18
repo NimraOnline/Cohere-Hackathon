@@ -97,7 +97,12 @@ function Reflect() {
     
         const result = await response.json();
         setQuestions(result.questions);
-        setPopupContent(result.questions); // Set popupContent directly with result.questions
+
+        setTimeout(() => {
+          setPopupContent(result.questions);
+        }, 1000);
+
+        setPopupContent(result.questions);
       } catch (error) {
         console.error('Error during reflection:', error);
         // Handle error as needed, e.g., show an error message
