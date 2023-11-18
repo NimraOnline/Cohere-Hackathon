@@ -135,13 +135,6 @@ def generateQuestions(doc, verse):
     Tadabbur involves pondering the deeper meanings and implications of various aspects of life.
 
     Using this definition, generate 3 deep and descriptive questions to assist one in doing tadabbur for the folloing text and verse: {doc} and {verse}.
-
-    Ex for text regarding Monotheism:
-
-    1. Reflect upon the concept of monotheism and the idea that there is no deity but Allah. What does this mean in the context of our existence and the universe? How does this notion contrast with the idea of polytheism or the belief in many gods?
-    2. Consider the role of creation as a testimony to Allah's oneness. What does it mean that the heavens, the earth, and all creatures between them testify to Allah's uniqueness? How does the beauty and complexity of the natural world serve as a sign of Allah's existence and Oneness? 
-    3. Contemplate the importance of the names "Ar-Rahman" and "Ar-Rahim" in this passage. What do these names imply about Allah's character and how do they relate to the concept of oneness? How do these names emphasize Allah's compassion and mercy towards creation?
-
     """
     response = co.generate(
     model='command',
