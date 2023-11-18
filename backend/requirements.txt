@@ -2,3 +2,5 @@ python-dotenv
 cohere
 flask
 flask-cors
+weaviate-client
+langchain

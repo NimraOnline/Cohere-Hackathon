@@ -13,8 +13,17 @@ function Reflect() {
     const [selectedEmotion, setSelectedEmotion] = useState('');
     const [selectedObjective, setSelectedObjective] = useState('');
     const [spiritualBoosterVisible, setSpiritualBoosterVisible] = useState(false);
+    
     const [generated, setGenerated] = useState('');
+    const [generated2, setGenerated2] = useState('');
+    const [generated3, setGenerated3] = useState('');
+
+    const [verse1, setVerse1] = useState('');
+    const [verse2, setVerse2] = useState('');
+    const [verse3, setVerse3] = useState('');
+
     const [isLoading, setIsLoading] = useState(false);
+    const [popupContent, setPopupContent] = useState('');
 
     const handleEmotionClick = (emotion) => {
         setSelectedEmotion(emotion);
@@ -40,7 +49,7 @@ function Reflect() {
         };
   
         // Using fetch to send data to the Flask backend
-        const response = await fetch('https://NimraDeploys.pythonanywhere.com/submit', {
+        const response = await fetch('http://127.0.0.1:5000/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -53,8 +62,16 @@ function Reflect() {
         }
   
         const result = await response.json();
+        
         setIsLoading(false);
-        setGenerated(result.generated)
+
+        setVerse1(result.metadata[0])
+        setVerse2(result.metadata[1])
+        setVerse3(result.metadata[2])
+
+        setGenerated(result.generated[0])
+        setGenerated2(result.generated[1])
+        setGenerated3(result.generated[2])
   
         // Update the state or perform any other necessary actions
       } catch (error) {
@@ -62,6 +79,18 @@ function Reflect() {
       }
     };
 
+  const handleButtonClick = (content) => {
+      // Set the content for the popup based on the button clicked
+      const firstKey = Object.keys(content)[0];
+      const generatedContent = content[firstKey];
+
+      setPopupContent(generatedContent);
+    };
+
+  const handleCloseButtonClick = () => {
+      // Close the popup by resetting the content
+      setPopupContent('');
+    };
   return (
     <div className="main">
       <h1></h1>
@@ -74,9 +103,54 @@ function Reflect() {
           <div class='user-objective'>  
             {generated ? (
                 // If a generated value exists, show it
-                <div>
-                  <p>{generated}</p>
+                <div className='user-objective'>
+                  <h2>Smart Results</h2>
+                  <div className='verses'>
+                    <div className='verse'>
+                      {/* Button for generated1 */}
+                      <p id='arabic'>{verse1.Arabic}</p>
+
+                      <div className='subverse'>
+                        <p>{verse1.English}</p>
+                      </div>
+
+                      <h4>Quran {verse1.Citation}</h4>
+                      <button id='generated' onClick={() => handleButtonClick({generated})}>?</button>
+                    </div>
+                    <div className='verse'>
+                      {/* Button for generated2 */}
+                      <p id='arabic'>{verse2.Arabic}</p>
+
+                      <div className='subverse'>
+                        <p>{verse2.English}</p>
+                      </div>
+
+                      <h4>Quran {verse2.Citation}</h4>
+                      <button id='generated' onClick={() => handleButtonClick({generated2})}>?</button>
+                    </div>
+                    <div className='verse'>
+                      {/* Button for generated3 */}
+                      <p id='arabic'>{verse3.Arabic}</p>
+
+                      <div className='subverse'>
+                        <p>{verse3.English}</p>
+                      </div>
+
+                      <h4>Quran {verse3.Citation}</h4>
+                      <button id='generated' onClick={() => handleButtonClick({generated3})}>?</button>
+                    </div>
+                {/* Popup */}
+                {popupContent && (
+                <div className="popup">
+                  {/* Render the dynamic content for the popup */}
+                  <p>{popupContent}</p>
+
+                  {/* Close button */}
+                  <button id='close' onClick={handleCloseButtonClick}>Close</button>
                 </div>
+                )}
+                </div>
+              </div>
             ) : (
             <div id='userinput2'>
                 <div className='user-objective'>

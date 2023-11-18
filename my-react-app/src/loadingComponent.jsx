@@ -23,7 +23,7 @@ const LoadingAnimation = () => {
     <div>
         <div id="verse-loading"></div>
         <center>
-        <h4>Searching</h4>
+        <h3>Searching</h3>
         </center>
     </div>
     )};
