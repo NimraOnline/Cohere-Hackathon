@@ -18,6 +18,8 @@ function Reflect() {
     const [generated2, setGenerated2] = useState('');
     const [generated3, setGenerated3] = useState('');
 
+    const [questions, setQuestions] = useState('');
+
     const [verse1, setVerse1] = useState('');
     const [verse2, setVerse2] = useState('');
     const [verse3, setVerse3] = useState('');
@@ -78,6 +80,28 @@ function Reflect() {
         console.error('Error:', error);
       }
     };
+  const handleReflect = async (metadata) => {
+    setIsLoading(true);
+
+    const response = await fetch('http://127.0.0.1:5000/reflect', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(metadata),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    setIsLoading(false);
+
+    setQuestions(result.questions);
+
+    setPopupContent(questions);
+
+  };
 
   const handleButtonClick = (content) => {
       // Set the content for the popup based on the button clicked
@@ -104,7 +128,7 @@ function Reflect() {
             {generated ? (
                 // If a generated value exists, show it
                 <div className='user-objective'>
-                  <h2>Smart Results</h2>
+                  <h2>{selectedObjective}</h2>
                   <div className='verses'>
                     <div className='verse'>
                       {/* Button for generated1 */}
@@ -115,7 +139,10 @@ function Reflect() {
                       </div>
 
                       <h4>Quran {verse1.Citation}</h4>
-                      <button id='generated' onClick={() => handleButtonClick({generated})}>?</button>
+                      <div className='buttons_div'>
+                        <button id='generated' onClick={() => handleButtonClick({generated})}>Explain</button>
+                        <button id='generated' onClick={() => handleReflect(verse1)}>Reflect on this!</button>
+                      </div>
                     </div>
                     <div className='verse'>
                       {/* Button for generated2 */}
@@ -126,7 +153,10 @@ function Reflect() {
                       </div>
 
                       <h4>Quran {verse2.Citation}</h4>
-                      <button id='generated' onClick={() => handleButtonClick({generated2})}>?</button>
+                      <div className='buttons_div'>
+                        <button id='generated' onClick={() => handleButtonClick({generated2})}>Explain</button>
+                        <button id='generated' onClick={() => handleReflect(verse2)}>Reflect on this!</button>
+                      </div>
                     </div>
                     <div className='verse'>
                       {/* Button for generated3 */}
@@ -135,9 +165,11 @@ function Reflect() {
                       <div className='subverse'>
                         <p>{verse3.English}</p>
                       </div>
-
                       <h4>Quran {verse3.Citation}</h4>
-                      <button id='generated' onClick={() => handleButtonClick({generated3})}>?</button>
+                      <div className='buttons_div'>
+                        <button id='generated' onClick={() => handleButtonClick({generated3})}>Explain</button>
+                        <button id='generated' onClick={() => handleReflect(verse3)}>Reflect on this!</button>
+                      </div>
                     </div>
                 {/* Popup */}
                 {popupContent && (

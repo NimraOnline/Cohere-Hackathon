@@ -8,7 +8,7 @@ body, html {
   height: 100%;
 }
 
-h2, h3 {
+h2, h3, h5 {
   font-family: 'Borel', sans-serif;
   color: azure;
 }
@@ -17,6 +17,10 @@ h4 {
   font-family: 'Borel', sans-serif;
   color: rgb(100, 29, 105);
   direction: rtl;
+}
+
+#small {
+  font-size: small;
 }
 
 .popup {
@@ -66,18 +70,19 @@ h4 {
   direction: rtl;
 }
 
+.buttons_div {
+  display: flex;
+  justify-content: space-between;  /* This puts space between the buttons */
+}
+
 #generated {
-  border-radius: 20%;
   cursor: pointer;
   box-shadow: 0 0 25px #603969;
   color: white;
   background-color: rgb(8, 8, 8);
-  font-size: 10px;
 }
 
 #generated:hover {
-  border-radius: 20%;
-  cursor: pointer;
   box-shadow: 0 0 25px #da37ff;
   background-color: #b79cbe;
   color: black;

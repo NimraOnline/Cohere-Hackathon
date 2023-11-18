@@ -39,8 +39,6 @@ def create_weaviate_client():
         
     return client
 
-
-
 def hybrid_search(query):
     for attempt in range(2):
         try:
@@ -75,6 +73,7 @@ def call_model(message, context):
     A user searches "{message}" and the following result comes up: {context}
 
     Your job is to summarize this result in relation to the user's search into ONE sentence.
+    Very briefly include how their search relates to the results in ONE SENTENCE.
 
     Only respond with the sentence and nothing else. Do not ask any follow up questions!
     """)
@@ -90,8 +89,8 @@ def call_model(message, context):
 
 def remove_newlines_and_questions(text):
     # Remove everything after the first newline character
-    text = re.sub(r"\n.*", "", text)
     text = re.sub(r'\.(.*?\?)', ".", text)
+    text = re.sub(r'\n(.*?\?)', "", text)
     text = re.sub(r"Muhammad", "Muhammad (ﷺ)", text)
 
     # Remove any spaces at the beginning or end of the string
@@ -128,9 +127,36 @@ def get_verses(quran_data):
 
     return(returned_verses)
 
+def generateQuestions(doc, verse):
+    co = cohere.Client(API_KEY)
+    generate_prompt = f"""
+    Tadabbur refers to the act of contemplation, reflection, or thoughtful consideration. 
+    It is often associated with reflecting on the meanings of Quranic verses or contemplating the natural world as a means of deepening one's understanding and connection with God. 
+    Tadabbur involves pondering the deeper meanings and implications of various aspects of life.
+
+    Using this definition, generate 3 deep and descriptive questions to assist one in doing tadabbur for the folloing text and verse: {doc} and {verse}.
+
+    Ex for text regarding Monotheism:
+
+    1. Reflect upon the concept of monotheism and the idea that there is no deity but Allah. What does this mean in the context of our existence and the universe? How does this notion contrast with the idea of polytheism or the belief in many gods?
+    2. Consider the role of creation as a testimony to Allah's oneness. What does it mean that the heavens, the earth, and all creatures between them testify to Allah's uniqueness? How does the beauty and complexity of the natural world serve as a sign of Allah's existence and Oneness? 
+    3. Contemplate the importance of the names "Ar-Rahman" and "Ar-Rahim" in this passage. What do these names imply about Allah's character and how do they relate to the concept of oneness? How do these names emphasize Allah's compassion and mercy towards creation?
+
+    """
+    response = co.generate(
+    model='command',
+    prompt=generate_prompt,
+    max_tokens=500,
+    temperature=1.0,
+    k=0,
+    stop_sequences=[],
+    return_likelihoods='NONE')
+
+    return(response.generations[0].text)
+
 @app.route('/submit', methods=['POST'])
 def submit():
-    print("inside")
+    print("inside submit")
     if request.method == 'POST':
         data = request.get_json()
         emotion = data.get('emotion')
@@ -164,6 +190,18 @@ def submit():
         
         return jsonify({'generated': summaries,
                         'metadata' : verses})
+
+@app.route('/reflect', methods=['POST'])
+def reflect():
+    print("inside reflect")
+    if request.method == 'POST':
+        data = request.get_json()
+    tafsir = data.get('Docs')
+    english = data.get('English')
+
+    questions = generateQuestions(tafsir, english)
+
+    return jsonify({'questions': questions})
 
 if __name__ == '__main__':
     app.run(debug=False)
