@@ -43,6 +43,8 @@ h4 {
   padding: 20px;
   border: 1px solid #ccc;
   z-index: 999;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .popup p {
@@ -208,6 +210,7 @@ h4 {
 
 #submit-button {
   color: rgb(241, 229, 245);
+  background-color:#1f1319;
 }
 
 #submit-button:hover {
