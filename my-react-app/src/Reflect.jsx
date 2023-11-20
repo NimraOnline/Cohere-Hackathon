@@ -18,7 +18,11 @@ function Reflect() {
     const [generated2, setGenerated2] = useState('');
     const [generated3, setGenerated3] = useState('');
 
-    const [questions, setQuestions] = useState('');
+    const [questions, setQuestions] = useState(''); // Question assigner
+
+    const [questions1, setQuestions1] = useState('');
+    const [questions2, setQuestions2] = useState('');
+    const [questions3, setQuestions3] = useState('');
 
     const [verse1, setVerse1] = useState('');
     const [verse2, setVerse2] = useState('');
@@ -51,7 +55,7 @@ function Reflect() {
         };
   
         // Using fetch to send data to the Flask backend
-        const response = await fetch('https://tadabor-fb4f5dd9029a.herokuapp.com/submit', {
+        const response = await fetch('http://127.0.0.1:5000/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -80,10 +84,41 @@ function Reflect() {
         console.error('Error:', error);
       }
     };
-    const handleReflect = async (metadata) => {
+
+    const handleReflect = async (metadata, v_num) => {
+      if (v_num == 1) {
+        if (questions1 != ''){
+          setPopupContent(questions1);
+        }
+        else{
+          generateQuestions(metadata);
+          setQuestions1(questions);
+        }
+      }
+      if (v_num == 2) {
+        if (questions2 != ''){
+          setPopupContent(questions2);
+        }
+        else{
+          generateQuestions(metadata);
+          setQuestions2(questions);
+        }
+      }
+      if (v_num == 3) {
+        if (questions3 != ''){
+          setPopupContent(questions3);
+        }
+        else{
+          generateQuestions(metadata);
+          setQuestions3(questions);
+        }
+      }
+    }
+
+    const generateQuestions = async (metadata) => {
       setIsLoading(true);
       try {
-        const response = await fetch('https://tadabor-fb4f5dd9029a.herokuapp.com/reflect', {
+        const response = await fetch('http://127.0.0.1:5000/reflect', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -96,13 +131,12 @@ function Reflect() {
         }
     
         const result = await response.json();
-        setQuestions(result.questions);
 
         setTimeout(() => {
           setPopupContent(result.questions);
         }, 1000);
 
-        setPopupContent(result.questions);
+        setQuestions(result.questions);
       } catch (error) {
         console.error('Error during reflection:', error);
         // Handle error as needed, e.g., show an error message
@@ -149,7 +183,7 @@ function Reflect() {
                       <h4>Quran {verse1.Citation}</h4>
                       <div className='buttons_div'>
                         <button id='generated' onClick={() => handleButtonClick({generated})}>Explain</button>
-                        <button id='generated' onClick={() => handleReflect(verse1)}>Reflect on this!</button>
+                        <button id='generated' onClick={() => handleReflect(verse1, 1)}>Reflect on this!</button>
                       </div>
                     </div>
                     <div className='verse'>
@@ -163,7 +197,7 @@ function Reflect() {
                       <h4>Quran {verse2.Citation}</h4>
                       <div className='buttons_div'>
                         <button id='generated' onClick={() => handleButtonClick({generated2})}>Explain</button>
-                        <button id='generated' onClick={() => handleReflect(verse2)}>Reflect on this!</button>
+                        <button id='generated' onClick={() => handleReflect(verse2, 2)}>Reflect on this!</button>
                       </div>
                     </div>
                     <div className='verse'>
@@ -176,7 +210,7 @@ function Reflect() {
                       <h4>Quran {verse3.Citation}</h4>
                       <div className='buttons_div'>
                         <button id='generated' onClick={() => handleButtonClick({generated3})}>Explain</button>
-                        <button id='generated' onClick={() => handleReflect(verse3)}>Reflect on this!</button>
+                        <button id='generated' onClick={() => handleReflect(verse3, 3)}>Reflect on this!</button>
                       </div>
                     </div>
                 {/* Popup */}
